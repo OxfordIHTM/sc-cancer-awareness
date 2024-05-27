@@ -1,6 +1,6 @@
 ---
 title: "Seychelles Cancer Awareness Survey Planning"
-author: "L'Esacle, Mahe, Seychelles"
+author: "L'Escale, Mahe, Seychelles"
 date: 27-29 May 2024
 output:
   xaringan::moon_reader:
