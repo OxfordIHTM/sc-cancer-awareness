@@ -1,0 +1,261 @@
+---
+title: "Seychelles Cancer Awareness Survey Planning"
+author: "L'Esacle, Mahe, Seychelles"
+date: 27-29 May 2024
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+if(!require(remotes)) install.packages("remotes")
+if(!require(fontawesome)) remotes::install_github("rstudio/fontawesome")
+
+tooltip_css <- "font-family:Arial,Helvetica,sans-serif; font-size:12px; font-weight:bold; color:#FFFFFF; padding:5px"
+
+## Sample size calculator function ----
+calculate_sample_size <- function(z, p, d) {
+  ss <- (z ^ 2 * (p * (1 - p))) / d ^ 2
+  
+  ceiling(ss)
+}
+
+## Finite population correction ----
+correct_sample_finite <- function(n, pop) {
+  ss <- n / (1 + n / pop)
+  ceiling(ss)
+}
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+
+style_mono_light(
+  base_color = "#002147",
+  #title_slide_background_image = "https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2014/7/29/1406640126780/f089869e-2c47-481b-be03-db976b2ec9e1-1024x768.jpeg?width=620&quality=85&auto=format&fit=max&s=fd5278ce1249bf8f11f78a7bc869933e",
+  #title_slide_background_size = "cover",
+  link_color = "#214700",
+  header_font_google = google_font("Fira Sans"),
+  text_font_google   = google_font("Fira Sans Condensed"),
+  code_font_google   = google_font("Fira Mono"),
+  text_font_size = "1.2em",
+  header_h1_font_size = "50px",
+  header_h2_font_size = "40px",
+  header_h3_font_size = "30px",
+  text_slide_number_font_size = "0.5em",
+  footnote_font_size = "0.5em"
+)
+```
+
+class: inverse, center, middle
+
+## Technical Notes and Discussions
+
+---
+
+# Outline
+
+* General sample size considerations for surveys
+
+* Specific sample size considerations for specific types of surveys
+
+---
+
+# General sample size considerations for surveys
+
+* Sample size will depend on which indicator/s need to be measured
+
+* Sample size will depend on survey design
+
+* Sample size will depend on amount of resources available
+
+---
+
+<!-- background-color: #FFFFFF -->
+
+# Sample size equation for prevalence surveys
+
+* Basic formula:
+
+$$ n ~ = ~ \frac{z ^ 2 ~ \times ~ p(1 - p)}{d ^ 2}  $$
+
+where:
+
+\\(n ~ = ~ \text{sample size}\\)
+
+\\(z ~ = ~ \text{z-score (standard deviation) for confidence interval required}\\)
+
+\\(p ~ = ~ \text{known proportion of the indicator being measured}\\)
+
+\\(d ~ = ~ \text{precision required}\\)
+
+---
+
+# Sample size considerations for prevalence surveys
+
+* To calculate this adequate sample size there is a simple formula
+
+* However it needs some practical issues in selecting values for the assumptions required in the formula
+
+* In some situations, the decision to select the appropriate values for these assumptions are not simple
+
+---
+
+# Sample size considerations for prevalence surveys - z statisic
+
+* $z$ statistic is usually a choice between these values:
+
+```{r, echo = FALSE}
+z <- c(1.65, 1.96, 2.58)
+
+pvalue <- c(0.1, 0.05, 0.01)
+
+cint <- c("90%", "95%", "99%")
+
+data.frame(z, pvalue, cint) |>
+  knitr::kable(col.names = c("z statistic", "p-value", "confidence intervals"))
+```
+
+
+* For most prevalence surveys (and most studies), a **95% confidence interval** is what we want to aim for
+
+---
+
+# Sample size considerations for prevalence surveys - true prevalence
+
+* Need to use a known value of true prevalence (\\(p\\)) of the indicator being measured
+
+* This can usually be found from a literature review to find similar studies/surveys that measured similar indicators
+
+* If proposed/planned study is so unique and measures indicators not measured before, then a best guess of true prevalence can be used; or,
+
+* Use a true prevalence value that gives the highest possible sample size requirement - this value is **0.50 (50%)**
+
+---
+
+# Sample size considerations for prevalence surveys - precision
+
+* Precision, in general terms, is the amount of "swing" below and above the estimated prevalence within which the true prevalence lies
+
+* Selecting a value for precision (\\(d\\)) to aim for should take into account the assumed or known true prevalence (\\(p\\)).
+
+* Some authors recommended to select a precision of 5% if the prevalence of the disease is going to be between 10% and 90% 
+
+* However, when the assumed prevalence is too small (going to be below 10%) or too high (going to be greater than 90%), the precision of 5% seems to be inappropriate
+
+---
+
+# Effect of varying true prevalence
+
+```{r, echo = FALSE}
+z <- 1.96
+p <- c(0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 0.95)
+d <- 0.05
+
+ss <- calculate_sample_size(z = z, p = p, d = d)
+
+data.frame(z, p, d, ss) |>
+  knitr::kable(col.names = c("z-statistic", "true prevalence", "precision", "sample size"))
+```
+
+---
+
+# Effect of varying precision
+
+```{r, echo = FALSE}
+z <- 1.96
+p <- rep(c(0.05, 0.2,  0.5, 0.7, 0.95), 3)
+d <- c(rep(0.03, 5), rep(0.05, 5), rep(0.08, 5))
+
+ss <- calculate_sample_size(z = z, p = p, d = d)
+
+data.frame(z, p, d, ss) |>
+  dplyr::arrange(p, d) |>
+  dplyr::slice(1:9) |>
+  knitr::kable(col.names = c("z-statistic", "true prevalence", "precision", "sample size"))
+```
+
+---
+
+# Effect of varying precision - continued
+
+```{r, echo = FALSE}
+data.frame(z, p, d, ss) |>
+  dplyr::arrange(p, d) |>
+  dplyr::slice(10:15) |>
+  knitr::kable(col.names = c("z-statistic", "true prevalence", "precision", "sample size"))
+```
+
+---
+
+# Sample size considerations for prevalence surveys - finite population
+
+* The size of the universe/total population from which sampling is to be done impacts sample size
+
+* A finite population correction can be applied to sample size calculations to make it more appropriate/applicable to a known population size
+
+---
+
+# Finite population correction for sample size
+
+$$ n_{adjusted} ~ = ~ \frac{n}{1 + \frac{n}{pop}} $$
+where:
+
+\\(n_{adjusted} ~ = ~ \text{Adjusted sample size}\\)
+
+\\(n ~ = ~ \text{calculated sample size}\\)
+
+\\(pop ~ = ~ \text{population}\\)
+
+---
+
+# Adjusted sample sizes accounting for finite population
+
+```{r, echo = FALSE}
+z <- 1.96
+p <- c(0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 0.95)
+d <- 0.05
+
+ss <- calculate_sample_size(z = z, p = p, d = d)
+
+adj <- correct_sample_finite(n = ss, pop = 100000)
+
+data.frame(z, p, d, ss, adj) |>
+  knitr::kable(col.names = c("z-statistic", "true prevalence", "precision", "sample size", "adjusted"))
+
+```
+
+---
+
+class: inverse, center, middle
+
+# Questions?
+
+---
+
+class: inverse, center, middle
+
+# Thank you!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

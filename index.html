@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Seychelles Cancer Awareness Survey Planning</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="L’Esacle, Mahe, Seychelles" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Seychelles Cancer Awareness Survey Planning
+]
+.author[
+### L’Esacle, Mahe, Seychelles
+]
+.date[
+### 27-29 May 2024
+]
+
+---
+
+
+
+
+
+
+class: inverse, center, middle
+
+## Technical Notes and Discussions
+
+---
+
+# Outline
+
+* General sample size considerations for surveys
+
+* Specific sample size considerations for specific types of surveys
+
+---
+
+# General sample size considerations for surveys
+
+* Sample size will depend on which indicator/s need to be measured
+
+* Sample size will depend on survey design
+
+* Sample size will depend on amount of resources available
+
+---
+
+&lt;!-- background-color: #FFFFFF --&gt;
+
+# Sample size equation for prevalence surveys
+
+* Basic formula:
+
+$$ n ~ = ~ \frac{z ^ 2 ~ \times ~ p(1 - p)}{d ^ 2}  $$
+
+where:
+
+\\(n ~ = ~ \text{sample size}\\)
+
+\\(z ~ = ~ \text{z-score (standard deviation) for confidence interval required}\\)
+
+\\(p ~ = ~ \text{known proportion of the indicator being measured}\\)
+
+\\(d ~ = ~ \text{precision required}\\)
+
+---
+
+# Sample size considerations for prevalence surveys
+
+* To calculate this adequate sample size there is a simple formula
+
+* However it needs some practical issues in selecting values for the assumptions required in the formula
+
+* In some situations, the decision to select the appropriate values for these assumptions are not simple
+
+---
+
+# Sample size considerations for prevalence surveys - z statisic
+
+* `\(z\)` statistic is usually a choice between these values:
+
+
+| z statistic| p-value|confidence intervals |
+|-----------:|-------:|:--------------------|
+|        1.65|    0.10|90%                  |
+|        1.96|    0.05|95%                  |
+|        2.58|    0.01|99%                  |
+
+
+* For most prevalence surveys (and most studies), a **95% confidence interval** is what we want to aim for
+
+---
+
+# Sample size considerations for prevalence surveys - true prevalence
+
+* Need to use a known value of true prevalence (\\(p\\)) of the indicator being measured
+
+* This can usually be found from a literature review to find similar studies/surveys that measured similar indicators
+
+* If proposed/planned study is so unique and measures indicators not measured before, then a best guess of true prevalence can be used; or,
+
+* Use a true prevalence value that gives the highest possible sample size requirement - this value is **0.50 (50%)**
+
+---
+
+# Sample size considerations for prevalence surveys - precision
+
+* Precision, in general terms, is the amount of "swing" below and above the estimated prevalence within which the true prevalence lies
+
+* Selecting a value for precision (\\(d\\)) to aim for should take into account the assumed or known true prevalence (\\(p\\)).
+
+* Some authors recommended to select a precision of 5% if the prevalence of the disease is going to be between 10% and 90% 
+
+* However, when the assumed prevalence is too small (going to be below 10%) or too high (going to be greater than 90%), the precision of 5% seems to be inappropriate
+
+---
+
+# Effect of varying true prevalence
+
+
+| z-statistic| true prevalence| precision| sample size|
+|-----------:|---------------:|---------:|-----------:|
+|        1.96|            0.05|      0.05|          73|
+|        1.96|            0.10|      0.05|         139|
+|        1.96|            0.20|      0.05|         246|
+|        1.96|            0.30|      0.05|         323|
+|        1.96|            0.40|      0.05|         369|
+|        1.96|            0.50|      0.05|         385|
+|        1.96|            0.60|      0.05|         369|
+|        1.96|            0.70|      0.05|         323|
+|        1.96|            0.90|      0.05|         139|
+|        1.96|            0.95|      0.05|          73|
+
+---
+
+# Effect of varying precision
+
+
+| z-statistic| true prevalence| precision| sample size|
+|-----------:|---------------:|---------:|-----------:|
+|        1.96|            0.05|      0.03|         203|
+|        1.96|            0.05|      0.05|          73|
+|        1.96|            0.05|      0.08|          29|
+|        1.96|            0.20|      0.03|         683|
+|        1.96|            0.20|      0.05|         246|
+|        1.96|            0.20|      0.08|          97|
+|        1.96|            0.50|      0.03|        1068|
+|        1.96|            0.50|      0.05|         385|
+|        1.96|            0.50|      0.08|         151|
+
+---
+
+# Effect of varying precision - continued
+
+
+| z-statistic| true prevalence| precision| sample size|
+|-----------:|---------------:|---------:|-----------:|
+|        1.96|            0.70|      0.03|         897|
+|        1.96|            0.70|      0.05|         323|
+|        1.96|            0.70|      0.08|         127|
+|        1.96|            0.95|      0.03|         203|
+|        1.96|            0.95|      0.05|          73|
+|        1.96|            0.95|      0.08|          29|
+
+---
+
+# Sample size considerations for prevalence surveys - finite population
+
+* The size of the universe/total population from which sampling is to be done impacts sample size
+
+* A finite population correction can be applied to sample size calculations to make it more appropriate/applicable to a known population size
+
+---
+
+# Finite population correction for sample size
+
+$$ n_{adjusted} ~ = ~ \frac{n}{1 + \frac{n}{pop}} $$
+where:
+
+\\(n_{adjusted} ~ = ~ \text{Adjusted sample size}\\)
+
+\\(n ~ = ~ \text{calculated sample size}\\)
+
+\\(pop ~ = ~ \text{population}\\)
+
+---
+
+# Adjusted sample sizes accounting for finite population
+
+
+| z-statistic| true prevalence| precision| sample size| adjusted|
+|-----------:|---------------:|---------:|-----------:|--------:|
+|        1.96|            0.05|      0.05|          73|       73|
+|        1.96|            0.10|      0.05|         139|      139|
+|        1.96|            0.20|      0.05|         246|      246|
+|        1.96|            0.30|      0.05|         323|      322|
+|        1.96|            0.40|      0.05|         369|      368|
+|        1.96|            0.50|      0.05|         385|      384|
+|        1.96|            0.60|      0.05|         369|      368|
+|        1.96|            0.70|      0.05|         323|      322|
+|        1.96|            0.90|      0.05|         139|      139|
+|        1.96|            0.95|      0.05|          73|       73|
+
+---
+
+class: inverse, center, middle
+
+# Questions?
+
+---
+
+class: inverse, center, middle
+
+# Thank you!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
